@@ -16,16 +16,14 @@ public static class Search
     #region 线性查找程序
     public static int Linear<T>(IList<T> a, T x) where T : IEquatable<T>
     {
-        int answer = -1;
         for (int i = 0; i < a.Count; i++)
         {
             if (a[i].Equals(x))
             {
-                answer = i;
-                break;
+                return i;
             }
         }
-        return answer;
+        return -1;
     }
     #endregion
 
@@ -53,5 +51,21 @@ public static class Search
                 p = q + 1;
         }
         return -1;
+    }
+
+    public static int RecursiveBinary<T>(IList<T> a, int p, int r, T x) where T : IEquatable<T>, IComparable<T>
+    {
+        if (p >= r)
+            return -1;
+
+        int q = (p + r) / 2;
+        if (a[q].Equals(x))
+            return q;
+
+        int result = a[q].CompareTo(x);
+        if (result > 0)
+            return RecursiveBinary<T>(a, p, q - 1, x);
+        else
+            return RecursiveBinary<T>(a, q + 1, r, x);
     }
 }
