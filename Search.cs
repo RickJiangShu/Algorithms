@@ -13,6 +13,22 @@ using System.Collections.Generic;
 /// </summary>
 public static class Search
 {
+    #region 线性查找程序
+    public static int Linear<T>(IList<T> a, T x) where T : IEquatable<T>
+    {
+        int answer = -1;
+        for (int i = 0; i < a.Count; i++)
+        {
+            if (a[i].Equals(x))
+            {
+                answer = i;
+                break;
+            }
+        }
+        return answer;
+    }
+    #endregion
+
     /// <summary>
     /// 二分查找
     /// </summary>
